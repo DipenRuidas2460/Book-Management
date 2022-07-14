@@ -1,4 +1,3 @@
-
 const mongoose = require("mongoose");
 const bookModel = require("../models/bookModel");
 const reviewModel = require("../models/reviewModel");
@@ -58,7 +57,6 @@ const createReview = async function (req, res) {
         res.status(201).send({ status: true, message: "review created", data: showData })
 
     } catch (err) {
-        console.log(err)
         return res.status(500).send({ status: false, mag: err.message })
 
     }

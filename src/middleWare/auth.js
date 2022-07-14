@@ -44,7 +44,7 @@ const authorize = async function (req, res, next) {
         if (!bookToBeModified) return res.status(400).send({ status: false, message: "Book Id must be present in params" })
         if (!mongoose.isValidObjectId(bookToBeModified)) return res.status(400).send({ status: false, message: "Invalid bookId" })
 
-        let newUserId = await bookModel.findById(bookToBeModified).select("userId");
+        let newUserId = await bookModel.findById({_id:bookToBeModified}).select("userId");
 
         if (!newUserId) return res.status(400).send({ status: false, message: "Please use correct bookId" })
 

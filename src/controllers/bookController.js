@@ -221,7 +221,6 @@ const updateById = async function (req, res) {
         }, { new: true })
         res.status(200).send({ status: true, message: "Book updated", data: updateBook })
     } catch (err) {
-        console.log(err)
         res.status(500).send({ status: false, message: err.message })
     }
 }
@@ -239,7 +238,7 @@ const deleteBookById = async function (req, res) {
 
         if (data.isDeleted == true) return res.status(404).send({ status: false, message: "data already deleted" })
 
-        let Update = await bookModel.findOneAndUpdate({ _id: bookId }, { isDeleted: true, deletedAt: Date() }, { new: true });
+        let Update = await bookModel.findOneAndUpdate({ _id: bookId }, { isDeleted: true, deletedAt: Date.now() }, { new: true });
         console.log(Update)
         return res.status(200).send({ status: true, message: "successfully deleted book", });
     } catch (err) {
