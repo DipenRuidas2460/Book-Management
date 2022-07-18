@@ -5,6 +5,7 @@ const isValid = function (value) {
     if (typeof (value) === "undefined" || value === null) return false;
     if (typeof (value) === "string" && value.trim().length === 0) return false;
     if (typeof (value) === "string") return true;
+    return false
 
 }
 
@@ -47,7 +48,7 @@ const createUser = async function (req, res) {
         if ((password).includes(" ")) { { return res.status(400).send({ status: false, message: "Please remove any empty spaces in password" }); } }
         if (!((password.length >= 8) && (password.length < 15))) { return res.status(400).send({ status: false, message: "Password should be in 8-15 character" }) }
 
-        if (userData.address) {
+        if (userData.address) {    
             if (Object.keys(userData.address).length == 0) { return res.status(400).send({ status: false, message: "Address can't be empty" }); }
 
             if (userData.address.street == "") return res.status(400).send({ status: false, message: "street can't be empty" })
